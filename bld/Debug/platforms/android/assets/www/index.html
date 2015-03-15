@@ -1,0 +1,167 @@
+﻿<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>My App</title>
+    <link href="css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+    <link rel="stylesheet" href="styles/onsen-css-components-blue-basic-theme.css">
+    <link rel="stylesheet" href="styles/app.css" />
+
+    <script src="lib/onsen/js/angular/angular.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script>
+
+    <script src="cordova.js"></script>
+
+    <script>
+        var module = angular.module('app', ['onsen']);
+        
+    </script>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="plugins/nl.x-services.plugins.flashlight/www/Flashlight.js"></script>
+    <script src="scripts/index.js"></script>
+    <style>
+       .page__background
+       {
+           background-color:#ffffff;
+       }
+
+       .dialog {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+          padding: 0;
+          margin: 0;
+          font: inherit;
+          color: inherit;
+          background: transparent;
+          border: none;
+          line-height: normal;
+          cursor: default;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          font-weight: 400;
+          font-size: 17px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          margin: auto auto;
+          background-color: rgba(255, 255, 255, 0.92);
+          -webkit-box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+          box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+          overflow: hidden;
+          min-width: 270px;
+          min-height: 100px;
+          text-align: left;
+          -webkit-border-radius: 4px;
+          border-radius: 4px;
+        }
+        .dialog-mask {
+          padding: 0;
+          margin: 0;
+          font: inherit;
+          color: inherit;
+          background: transparent;
+          border: none;
+          line-height: normal;
+          cursor: default;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          background-color: #141313;
+        }
+    </style>
+
+    <script>
+        
+        document.addEventListener("backbutton", function () {
+            // pass exitApp as callbacks to the switchOff method
+            window.plugins.flashlight.switchOff(exitApp, exitApp);
+        }, false);
+
+        function exitApp() {
+            navigator.app.exitApp();
+        }
+
+        function flash()
+        {
+            window.plugins.flashlight.available(function (isAvailable) {
+                if (isAvailable) {
+
+                    // switch on
+                    window.plugins.flashlight.toggle() ; // success/error callbacks may be passed
+
+                   
+
+                } else {
+                    alert("Flashlight not available on this device");
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <ons-tabbar>
+        <ons-tab page="home.html" active="true" onclick="flash()" >
+            <ons-icon icon="ion-home"></ons-icon>
+            <span style="font-size: 14px">LED</span>
+        </ons-tab>
+        <ons-tab page="fav.html"  id="screen">
+            <ons-icon icon="ion-star"></ons-icon>
+            <span style="font-size: 14px">Screen</span>
+        </ons-tab>
+        <ons-tab page="settings.html" >
+            <ons-icon icon="ion-gear-a"></ons-icon>
+            <span style="font-size: 14px">About</span>
+        </ons-tab>
+    </ons-tabbar>
+
+    <ons-template id="home.html">
+        <div class="dialog-mask"></div>
+        <div class="dialog">
+            <div class="page">
+                <p style="text-align:center;margin-top:40px;opacity:0.4;">LED</p>
+            </div>
+        </div>
+    </ons-template>
+
+    <ons-template id="fav.html">
+        
+    </ons-template>
+
+    <ons-template id="settings.html">
+        <div class="dialog-mask"></div>
+        <div class="dialog">
+            <div class="page">
+                <p style="text-align:center;margin-top:40px;opacity:0.4;"> developed by :  FunApp</p>
+                
+            </div>
+        </div>
+    </ons-template>
+
+    
+</body>
+</html>
